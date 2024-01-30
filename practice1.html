@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function mathFunc(A, B, operation) {
+            if (Array.isArray(A) || Array.isArray(B)) {
+                let length, tempArr = [];
+                (A.length >= B.length) ? length = A.length : length = B.length;
+                for (let i = 0; i < length; i++) {
+                    if (!isNaN(A[i]) && !isNaN(B[i])) {
+                        switch (operation) {
+                            case "+":
+                                tempArr[i] = +A[i] + +B[i];
+                                break;
+                            case "-":
+                                tempArr[i] = +A[i] - +B[i];
+                                break;
+                            case "*":
+                                tempArr[i] = +A[i] * +B[i];
+                                break;
+                            case "/":
+                                if (+B[i] != 0) {
+                                    tempArr[i] = +A[i] / +B[i];
+                                } else tempArr[i] = "error";
+                                break;
+                            default:
+                                alert("Такої операції не існує");
+                                return "error";
+                        };
+                    } else tempArr[i] = "Ви написали не число";
+                };
+                return tempArr;
+            } else if (A instanceof Object && B instanceof Object) {
+                let tempObj = {};
+                if (!isNaN(A.a) && !isNaN(B.a) && !isNaN(A.b) && !isNaN(B.b)) {
+                    switch (operation) {
+                        case "+":
+                            tempObj.a = +A.a + +B.a;
+                            tempObj.b = +A.b + +B.b;
+                            break;
+                        case "-":
+                            tempObj.a = +A.a - +B.a;
+                            tempObj.b = +A.b - +B.b;
+                            break;
+                        case "*":
+                            tempObj.a = +A.a * +B.a;
+                            tempObj.b = +A.b * +B.b;
+                            break;
+                        case "/":
+                            if (+B.a != 0 || +B.b != 0) {
+                                tempObj.a = +A.a / +B.a;
+                                tempObj.b = +A.b / +B.b;
+                                break;
+                            } else return "error";
+                            break;
+                        default:
+                            alert("Такої операції не існує");
+                            return "error";
+                    };
+                    return {results: `a: ${tempObj.a}, b: ${tempObj.b}`};
+                } else alert("Ви написали не число");
+            } else if (!isNaN(A) && !isNaN(B)) {
+                let result;
+                switch (operation) {
+                    case "+":
+                        return result = +A + +B;
+                        break;
+                    case "-":
+                        return result = +A - +B;
+                        break;
+                    case "*":
+                        return result = +A * +B;
+                        break;
+                    case "/":
+                        if (+B != 0) {
+                            return result = +A / +B;
+                        } else return result = "error";
+                        break;
+                    default:
+                        alert("Такої операції не існує");
+                        return "error";
+                };
+            } else return result = "Ви написали не число";
+        };
+        console.log(mathFunc([50, 30], [5, 3], "/"));
+    </script>
+</body>
+</html>
